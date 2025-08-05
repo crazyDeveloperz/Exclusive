@@ -309,7 +309,10 @@ function generateRedirectPage(linkParam, telegramUrl, CHANNEL_LINK, INSTAGRAM_LI
     
     .get-file-section {
       text-align: center;
-      padding: 0 30px 40px;
+      padding: 30px;
+      background: rgba(15, 23, 42, 0.5);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
     
     .get-file-button {
@@ -414,32 +417,6 @@ function generateRedirectPage(linkParam, telegramUrl, CHANNEL_LINK, INSTAGRAM_LI
       border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
     
-    @media (max-width: 768px) {
-      .exclusive-content {
-        flex-direction: column;
-      }
-      
-      .plans-container {
-        flex-direction: column;
-      }
-      
-      .content-preview {
-        width: 100%;
-      }
-      
-      h1 {
-        font-size: 2.2rem;
-      }
-      
-      .content-title {
-        font-size: 1.8rem;
-      }
-      
-      .section-title {
-        font-size: 1.8rem;
-      }
-    }
-    
     .token-display {
       background: rgba(15, 23, 42, 0.6);
       padding: 15px;
@@ -454,6 +431,60 @@ function generateRedirectPage(linkParam, telegramUrl, CHANNEL_LINK, INSTAGRAM_LI
       color: #60a5fa;
       word-break: break-all;
     }
+    
+    .mobile-instruction {
+      text-align: center;
+      color: #94a3b8;
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+      display: none;
+    }
+    
+    /* Mobile-first responsive design */
+    @media (max-width: 768px) {
+      .exclusive-content {
+        flex-direction: column;
+      }
+      
+      .plans-container {
+        flex-direction: column;
+      }
+      
+      .content-preview {
+        width: 100%;
+        height: 200px;
+        margin-bottom: 20px;
+      }
+      
+      h1 {
+        font-size: 2.2rem;
+      }
+      
+      .content-title {
+        font-size: 1.8rem;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+      
+      .plan-name {
+        font-size: 1.5rem;
+      }
+      
+      .plan-price {
+        font-size: 2rem;
+      }
+      
+      .get-file-button {
+        padding: 15px 30px;
+        font-size: 1.2rem;
+      }
+      
+      .mobile-instruction {
+        display: block;
+      }
+    }
   </style>
 </head>
 <body>
@@ -467,6 +498,51 @@ function generateRedirectPage(linkParam, telegramUrl, CHANNEL_LINK, INSTAGRAM_LI
       </div>
       <h1>PREMIUM ACCESS</h1>
       <p>Unlock premium content with us</p>
+    </div>
+    
+    <div class="exclusive-content">
+      <div class="content-preview">
+        <div class="preview-overlay">
+          <div class="play-icon">
+            <i class="fas fa-play"></i>
+          </div>
+        </div>
+      </div>
+      <div class="content-info">
+        <h2 class="content-title">Premium Content</h2>
+        <p class="content-description">
+          Access high-quality exclusive content available only through our service.
+          Enjoy premium features and early access to new releases.
+        </p>
+        <div class="features">
+          <div class="feature">
+            <i class="fas fa-check-circle"></i>
+            <span>High-Quality Resolution</span>
+          </div>
+          <div class="feature">
+            <i class="fas fa-check-circle"></i>
+            <span>Enhanced Color & Sound</span>
+          </div>
+          <div class="feature">
+            <i class="fas fa-check-circle"></i>
+            <span>Exclusive Releases</span>
+          </div>
+        </div>
+        <div class="token-display">
+          Your access token: <span class="token">${linkParam}</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Moved Get File section above Plans -->
+    <div class="get-file-section">
+      <p class="mobile-instruction">Scroll down to see our premium plans</p>
+      <a href="${telegramUrl}" class="get-file-button">
+        <span class="button-icon"><i class="fab fa-telegram"></i></span>
+        <span class="button-text">GET YOUR FILE NOW</span>
+        <span class="button-arrow"><i class="fas fa-arrow-right"></i></span>
+      </a>
+      <p style="margin-top: 20px; color: #94a3b8;">Click above to access your content via Telegram</p>
     </div>
     
     <div class="plans-section">
@@ -534,15 +610,6 @@ function generateRedirectPage(linkParam, telegramUrl, CHANNEL_LINK, INSTAGRAM_LI
       </div>
     </div>
     
-    <div class="get-file-section">
-      <a href="${telegramUrl}" class="get-file-button">
-        <span class="button-icon"><i class="fab fa-telegram"></i></span>
-        <span class="button-text">GET YOUR FILE NOW</span>
-        <span class="button-arrow"><i class="fas fa-arrow-right"></i></span>
-      </a>
-      <p style="margin-top: 20px; color: #94a3b8;">Click above to access your content via Telegram</p>
-    </div>
-    
     <div class="social-section">
       <h3 class="social-title">Follow us for more updates</h3>
       <div class="social-links">
@@ -569,20 +636,36 @@ function generateRedirectPage(linkParam, telegramUrl, CHANNEL_LINK, INSTAGRAM_LI
   <script>
     // Add animation to the get file button
     document.querySelector('.get-file-button').addEventListener('mouseenter', function() {
-      this.querySelector('.button-arrow').style.animation = 'none';
-      setTimeout(() => {
-        this.querySelector('.button-arrow').style.animation = 'bounce 1.5s infinite';
-      }, 10);
+      const arrow = this.querySelector('.button-arrow');
+      if (arrow) {
+        arrow.style.animation = 'none';
+        setTimeout(() => {
+          arrow.style.animation = 'bounce 1.5s infinite';
+        }, 10);
+      }
     });
     
     // Play icon animation
-    document.querySelector('.play-icon').addEventListener('click', function() {
-      this.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-      setTimeout(() => {
-        this.innerHTML = '<i class="fas fa-play"></i>';
-        alert('Preview available for premium users only');
-      }, 1500);
-    });
+    const playIcon = document.querySelector('.play-icon');
+    if (playIcon) {
+      playIcon.addEventListener('click', function() {
+        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+        setTimeout(() => {
+          this.innerHTML = '<i class="fas fa-play"></i>';
+          alert('Preview available for premium users only');
+        }, 1500);
+      });
+    }
+    
+    // Scroll to plans section when clicking on mobile instruction
+    const instruction = document.querySelector('.mobile-instruction');
+    if (instruction) {
+      instruction.addEventListener('click', function() {
+        document.querySelector('.plans-section').scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    }
   </script>
 </body>
 </html>`;
@@ -654,6 +737,22 @@ function generateErrorPage(CHANNEL_LINK) {
       0% { transform: scale(1); }
       50% { transform: scale(1.1); }
       100% { transform: scale(1); }
+    }
+    
+    @media (max-width: 768px) {
+      .error-card {
+        padding: 2rem;
+      }
+      h2 {
+        font-size: 1.8rem;
+      }
+      p {
+        font-size: 1rem;
+      }
+      .btn {
+        padding: 12px 24px;
+        font-size: 1rem;
+      }
     }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
