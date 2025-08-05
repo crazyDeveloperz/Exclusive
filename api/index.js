@@ -33,13 +33,14 @@ export default async (req, res) => {
 
 function generateRedirectPage(linkParam, telegramUrl, CHANNEL_LINK, INSTAGRAM_LINK, WEBSITE_LINK, WHATSAPP_LINK) {
   return `<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ThammuTV - Premium Access Gateway</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -53,55 +54,55 @@ function generateRedirectPage(linkParam, telegramUrl, CHANNEL_LINK, INSTAGRAM_LI
       --secondary: #2575fc;
       --premium: #ff6b00;
       --free: #25D366;
-      --dark: #121826;
+      --dark: #0f172a;
       --light: #f8f9fa;
+      --darker: #0a1120;
     }
     
     body {
-      background: linear-gradient(135deg, var(--dark) 0%, #1e293b 100%);
+      background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
       min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
       color: white;
+      position: relative;
+      overflow-x: hidden;
+    }
+    
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at top right, rgba(106, 17, 203, 0.1) 0%, transparent 40%);
+      z-index: -1;
     }
     
     .container {
       max-width: 1200px;
       width: 100%;
-      background: rgba(30, 41, 59, 0.8);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      animation: fadeIn 0.8s ease-out;
+      margin: 0 auto;
+      padding: 0 20px;
     }
     
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .header {
-      background: linear-gradient(to right, var(--primary), var(--secondary));
-      text-align: center;
-      padding: 40px 20px;
+    .header-section {
+      padding: 80px 0 40px;
       position: relative;
+      text-align: center;
+      background: linear-gradient(to bottom, var(--darker), var(--dark));
     }
     
     .exclusive-badge {
       position: absolute;
-      top: 20px;
-      right: 20px;
-      background: var(--premium);
+      top: 30px;
+      right: 5%;
+      background: linear-gradient(45deg, var(--premium), #ff8c00);
       color: white;
-      padding: 8px 20px;
+      padding: 8px 25px;
       border-radius: 30px;
       font-weight: 700;
       font-size: 0.9rem;
-      box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3);
+      box-shadow: 0 4px 20px rgba(255, 107, 0, 0.3);
       animation: pulse 2s infinite;
     }
     
@@ -112,64 +113,82 @@ function generateRedirectPage(linkParam, telegramUrl, CHANNEL_LINK, INSTAGRAM_LI
     }
     
     .logo {
-      font-size: 4rem;
-      margin-bottom: 15px;
-      text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      font-size: 5rem;
+      margin-bottom: 20px;
+      text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      background: linear-gradient(to right, #8e2de2, #4a00e0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
     }
     
     h1 {
-      font-size: 2.8rem;
-      margin-bottom: 10px;
+      font-size: 3.5rem;
+      margin-bottom: 15px;
       font-weight: 800;
+      background: linear-gradient(to right, #fff, #cbd5e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.2;
     }
     
-    .exclusive-content {
+    .subtitle {
+      font-size: 1.3rem;
+      color: #94a3b8;
+      max-width: 700px;
+      margin: 0 auto 40px;
+      line-height: 1.6;
+    }
+    
+    .content-section {
+      padding: 80px 0;
+      position: relative;
+      background: linear-gradient(to bottom, var(--dark), #0d1425);
+    }
+    
+    .content-wrapper {
       display: flex;
-      padding: 30px;
-      gap: 30px;
+      gap: 50px;
       align-items: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
     
     .content-preview {
       flex: 1;
-      border-radius: 15px;
-      overflow: hidden;
       position: relative;
-      height: 300px;
-      background: linear-gradient(45deg, #8e2de2, #4a00e0);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      aspect-ratio: 16/9;
+      background: linear-gradient(45deg, #1e293b, #0f172a);
     }
     
     .preview-overlay {
       position: absolute;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.3);
       display: flex;
       align-items: center;
       justify-content: center;
+      background: linear-gradient(45deg, rgba(106, 17, 203, 0.3), rgba(37, 117, 252, 0.3));
     }
     
     .play-icon {
-      width: 80px;
-      height: 80px;
-      background: rgba(255, 255, 255, 0.2);
+      width: 100px;
+      height: 100px;
+      background: rgba(255, 255, 255, 0.15);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       transition: all 0.3s;
+      backdrop-filter: blur(10px);
     }
     
     .play-icon i {
       color: white;
-      font-size: 2.5rem;
-      margin-left: 5px;
+      font-size: 3rem;
+      margin-left: 8px;
     }
     
     .content-info {
@@ -177,25 +196,87 @@ function generateRedirectPage(linkParam, telegramUrl, CHANNEL_LINK, INSTAGRAM_LI
     }
     
     .content-title {
-      font-size: 2.2rem;
-      margin-bottom: 15px;
+      font-size: 2.5rem;
+      margin-bottom: 25px;
       color: #fff;
       font-weight: 700;
+      background: linear-gradient(to right, #fff, #e2e8f0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
     
     .content-description {
       color: #cbd5e1;
-      line-height: 1.6;
-      margin-bottom: 25px;
+      line-height: 1.8;
+      margin-bottom: 30px;
+      font-size: 1.1rem;
     }
     
-    .plans-section {
-      padding: 40px 30px;
+    .features {
+      margin-bottom: 40px;
+    }
+    
+    .feature {
+      display: flex;
+      align-items: center;
+      margin-bottom: 18px;
+      font-size: 1.1rem;
+      color: #e2e8f0;
+    }
+    
+    .feature i {
+      margin-right: 15px;
+      width: 30px;
+      height: 30px;
+      background: rgba(59, 130, 246, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #3b82f6;
+    }
+    
+    .token-display {
+      background: rgba(15, 23, 42, 0.7);
+      padding: 20px;
+      border-radius: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      display: inline-block;
+      margin-top: 10px;
+    }
+    
+    .token-label {
+      color: #94a3b8;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+    
+    .token {
+      font-weight: 700;
+      color: #60a5fa;
+      font-size: 1.3rem;
+      word-break: break-all;
+    }
+    
+    .get-file-section {
+      padding: 80px 0;
+      background: linear-gradient(to bottom, #0d1425, #0a1120);
+      position: relative;
+      text-align: center;
+    }
+    
+    .get-file-section::before {
+      content: "";
+      position: absolute;
+      top: -1px;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: linear-gradient(to bottom, transparent, rgba(15, 23, 42, 0.8));
     }
     
     .section-title {
-      text-align: center;
-      font-size: 2.2rem;
+      font-size: 2.5rem;
       margin-bottom: 40px;
       font-weight: 700;
       background: linear-gradient(to right, var(--free), var(--premium));
@@ -203,133 +284,22 @@ function generateRedirectPage(linkParam, telegramUrl, CHANNEL_LINK, INSTAGRAM_LI
       -webkit-text-fill-color: transparent;
     }
     
-    .plans-container {
-      display: flex;
-      gap: 30px;
-      margin-bottom: 40px;
-    }
-    
-    .plan-card {
-      flex: 1;
-      background: rgba(30, 41, 59, 0.7);
-      border-radius: 15px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.3s ease;
-    }
-    
-    .plan-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-    }
-    
-    .plan-header {
-      padding: 25px;
-      text-align: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    .free .plan-header {
-      background: linear-gradient(to right, #16a34a, #22c55e);
-    }
-    
-    .premium .plan-header {
-      background: linear-gradient(to right, #ea580c, #f97316);
-    }
-    
-    .plan-name {
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-    
-    .plan-price {
-      font-size: 2.5rem;
-      font-weight: 800;
-    }
-    
-    .premium .plan-price::after {
-      content: "/month";
-      font-size: 1rem;
-      font-weight: normal;
-    }
-    
-    .plan-features {
-      padding: 25px;
-    }
-    
-    .feature {
-      display: flex;
-      align-items: center;
-      margin-bottom: 15px;
-      color: #cbd5e1;
-    }
-    
-    .feature i {
-      margin-right: 10px;
-      width: 24px;
-      text-align: center;
-    }
-    
-    .free .feature i {
-      color: var(--free);
-    }
-    
-    .premium .feature i {
-      color: var(--premium);
-    }
-    
-    .plan-button {
-      display: block;
-      text-align: center;
-      padding: 16px;
-      margin: 20px;
-      border-radius: 50px;
-      font-weight: 700;
-      text-decoration: none;
-      transition: all 0.3s;
-      cursor: pointer;
-    }
-    
-    .free .plan-button {
-      background: rgba(34, 197, 94, 0.15);
-      color: #22c55e;
-      border: 2px solid #22c55e;
-    }
-    
-    .premium .plan-button {
-      background: linear-gradient(to right, #ea580c, #f97316);
-      color: white;
-      box-shadow: 0 8px 20px rgba(234, 88, 12, 0.3);
-    }
-    
-    .plan-button:hover {
-      transform: scale(1.05);
-    }
-    
-    .get-file-section {
-      text-align: center;
-      padding: 30px;
-      background: rgba(15, 23, 42, 0.5);
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
     .get-file-button {
       display: inline-flex;
       align-items: center;
-      gap: 15px;
-      padding: 20px 40px;
-      background: linear-gradient(to right, var(--primary), var(--secondary));
+      gap: 20px;
+      padding: 25px 60px;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
       color: white;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       font-weight: 700;
       text-decoration: none;
-      border-radius: 60px;
-      box-shadow: 0 10px 25px rgba(37, 117, 252, 0.3);
+      border-radius: 70px;
+      box-shadow: 0 15px 35px rgba(37, 117, 252, 0.4);
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
+      margin-bottom: 40px;
     }
     
     .get-file-button::after {
@@ -348,12 +318,12 @@ function generateRedirectPage(linkParam, telegramUrl, CHANNEL_LINK, INSTAGRAM_LI
     }
     
     .get-file-button:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(37, 117, 252, 0.5);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(37, 117, 252, 0.6);
     }
     
     .button-icon {
-      font-size: 2rem;
+      font-size: 2.5rem;
     }
     
     .button-text {
@@ -361,88 +331,255 @@ function generateRedirectPage(linkParam, telegramUrl, CHANNEL_LINK, INSTAGRAM_LI
     }
     
     .button-arrow {
-      margin-left: 15px;
+      margin-left: 20px;
       animation: bounce 1.5s infinite;
     }
     
     @keyframes bounce {
       0%, 20%, 50%, 80%, 100% {transform: translateX(0);}
-      40% {transform: translateX(10px);}
-      60% {transform: translateX(5px);}
+      40% {transform: translateX(15px);}
+      60% {transform: translateX(8px);}
+    }
+    
+    .instruction {
+      color: #94a3b8;
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    
+    .highlight {
+      color: #60a5fa;
+      font-weight: 600;
+    }
+    
+    .plans-section {
+      padding: 80px 0;
+      background: linear-gradient(to bottom, #0a1120, var(--darker));
+      position: relative;
+    }
+    
+    .plans-section::before {
+      content: "";
+      position: absolute;
+      top: -1px;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: linear-gradient(to bottom, transparent, rgba(10, 17, 32, 0.9));
+    }
+    
+    .plans-container {
+      display: flex;
+      gap: 40px;
+      margin-top: 50px;
+    }
+    
+    .plan-card {
+      flex: 1;
+      background: linear-gradient(145deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.7));
+      border-radius: 25px;
+      overflow: hidden;
+      padding: 40px 30px;
+      transition: all 0.4s ease;
+      position: relative;
+      z-index: 1;
+      backdrop-filter: blur(10px);
+    }
+    
+    .plan-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(255, 255, 255, 0.05), transparent);
+      z-index: -1;
+      opacity: 0.3;
+    }
+    
+    .plan-card:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+    }
+    
+    .plan-header {
+      padding-bottom: 30px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 30px;
+    }
+    
+    .free .plan-header {
+      background: linear-gradient(to right, #16a34a, #22c55e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .premium .plan-header {
+      background: linear-gradient(to right, #ea580c, #f97316);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .plan-name {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+    
+    .plan-price {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 5px;
+    }
+    
+    .premium .plan-price::after {
+      content: "/month";
+      font-size: 1.2rem;
+      font-weight: normal;
+      color: #f8fafc;
+    }
+    
+    .plan-features {
+      margin-bottom: 30px;
+    }
+    
+    .feature-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      color: #e2e8f0;
+      font-size: 1.1rem;
+    }
+    
+    .feature-item i {
+      margin-right: 15px;
+      font-size: 1.3rem;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .free .feature-item i {
+      background: rgba(34, 197, 94, 0.15);
+      color: #22c55e;
+    }
+    
+    .premium .feature-item i {
+      background: rgba(249, 115, 22, 0.15);
+      color: #f97316;
+    }
+    
+    .plan-button {
+      display: block;
+      text-align: center;
+      padding: 18px;
+      border-radius: 60px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.3s;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+    
+    .free .plan-button {
+      background: rgba(34, 197, 94, 0.1);
+      color: #22c55e;
+      border: 2px solid rgba(34, 197, 94, 0.3);
+    }
+    
+    .premium .plan-button {
+      background: linear-gradient(to right, #ea580c, #f97316);
+      color: white;
+      box-shadow: 0 10px 25px rgba(234, 88, 12, 0.3);
+    }
+    
+    .plan-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     }
     
     .social-section {
-      background: rgba(15, 23, 42, 0.7);
-      padding: 30px;
+      padding: 100px 0;
+      background: linear-gradient(to bottom, var(--darker), #080e1b);
+      position: relative;
       text-align: center;
     }
     
+    .social-section::before {
+      content: "";
+      position: absolute;
+      top: -1px;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: linear-gradient(to bottom, transparent, rgba(8, 14, 27, 0.9));
+    }
+    
     .social-title {
-      font-size: 1.5rem;
-      margin-bottom: 25px;
-      color: #94a3b8;
+      font-size: 2rem;
+      margin-bottom: 50px;
+      font-weight: 700;
+      color: #e2e8f0;
     }
     
     .social-links {
       display: flex;
       justify-content: center;
-      gap: 20px;
+      gap: 30px;
       flex-wrap: wrap;
+      max-width: 900px;
+      margin: 0 auto;
     }
     
     .social-link {
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 12px 25px;
-      background: rgba(30, 41, 59, 0.5);
-      border-radius: 50px;
-      color: #cbd5e1;
+      gap: 15px;
+      padding: 20px 40px;
+      background: rgba(15, 23, 42, 0.6);
+      border-radius: 70px;
+      color: #e2e8f0;
       text-decoration: none;
       font-weight: 600;
       transition: all 0.3s;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 1.2rem;
+      min-width: 250px;
     }
     
     .social-link:hover {
-      transform: translateY(-5px);
+      transform: translateY(-8px);
       background: rgba(37, 117, 252, 0.2);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
     }
+    
+    .social-link i {
+      font-size: 1.8rem;
+    }
+    
+    .telegram { color: #0088cc; }
+    .instagram { color: #e1306c; }
+    .website { color: #3b82f6; }
+    .whatsapp { color: #25D366; }
     
     .footer {
       text-align: center;
-      padding: 25px;
+      padding: 40px 0;
       color: #64748b;
-      font-size: 0.9rem;
+      font-size: 1rem;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
-    }
-    
-    .token-display {
-      background: rgba(15, 23, 42, 0.6);
-      padding: 15px;
-      border-radius: 10px;
-      margin-top: 20px;
-      text-align: center;
-      font-size: 0.9rem;
-    }
-    
-    .token {
-      font-weight: 700;
-      color: #60a5fa;
-      word-break: break-all;
-    }
-    
-    .mobile-instruction {
-      text-align: center;
-      color: #94a3b8;
-      margin-bottom: 20px;
-      font-size: 1.1rem;
-      display: none;
+      background: #080e1b;
     }
     
     /* Mobile-first responsive design */
-    @media (max-width: 768px) {
-      .exclusive-content {
+    @media (max-width: 992px) {
+      .content-wrapper {
         flex-direction: column;
       }
       
@@ -450,14 +587,51 @@ function generateRedirectPage(linkParam, telegramUrl, CHANNEL_LINK, INSTAGRAM_LI
         flex-direction: column;
       }
       
-      .content-preview {
-        width: 100%;
-        height: 200px;
-        margin-bottom: 20px;
+      h1 {
+        font-size: 2.5rem;
+      }
+      
+      .content-title {
+        font-size: 2rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .get-file-button {
+        padding: 20px 40px;
+        font-size: 1.5rem;
+      }
+      
+      .social-link {
+        min-width: 200px;
+        padding: 15px 30px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .header-section {
+        padding: 60px 0 30px;
+      }
+      
+      .logo {
+        font-size: 4rem;
       }
       
       h1 {
-        font-size: 2.2rem;
+        font-size: 2rem;
+      }
+      
+      .subtitle {
+        font-size: 1.1rem;
+      }
+      
+      .content-section, 
+      .get-file-section, 
+      .plans-section, 
+      .social-section {
+        padding: 60px 0;
       }
       
       .content-title {
@@ -469,181 +643,220 @@ function generateRedirectPage(linkParam, telegramUrl, CHANNEL_LINK, INSTAGRAM_LI
       }
       
       .plan-name {
-        font-size: 1.5rem;
+        font-size: 1.7rem;
       }
       
       .plan-price {
-        font-size: 2rem;
+        font-size: 2.5rem;
       }
       
       .get-file-button {
-        padding: 15px 30px;
-        font-size: 1.2rem;
+        width: 100%;
+        max-width: 90%;
+        padding: 18px;
+        font-size: 1.3rem;
       }
       
-      .mobile-instruction {
-        display: block;
+      .button-icon {
+        font-size: 1.8rem;
+      }
+      
+      .social-link {
+        width: 100%;
+        max-width: 300px;
+      }
+      
+      .exclusive-badge {
+        position: relative;
+        top: 0;
+        right: 0;
+        margin: 0 auto 25px;
+        width: max-content;
       }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
+  <!-- Header Section -->
+  <section class="header-section">
+    <div class="container">
       <div class="exclusive-badge">
         <i class="fas fa-crown"></i> EXCLUSIVE CONTENT
       </div>
       <div class="logo">
         <i class="fas fa-film"></i>
       </div>
-      <h1>PREMIUM ACCESS</h1>
-      <p>Unlock premium content with us</p>
+      <h1>PREMIUM ACCESS GATEWAY</h1>
+      <p class="subtitle">Unlock premium content with seamless access through our Telegram integration</p>
     </div>
-    
-    <div class="exclusive-content">
-      <div class="content-preview">
-        <div class="preview-overlay">
-          <div class="play-icon">
-            <i class="fas fa-play"></i>
+  </section>
+  
+  <!-- Content Section -->
+  <section class="content-section">
+    <div class="container">
+      <div class="content-wrapper">
+        <div class="content-preview">
+          <div class="preview-overlay">
+            <div class="play-icon">
+              <i class="fas fa-play"></i>
+            </div>
+          </div>
+        </div>
+        <div class="content-info">
+          <h2 class="content-title">Premium Content Access</h2>
+          <p class="content-description">
+            Experience our premium content with the highest quality streaming. Our platform offers exclusive access to the latest releases in stunning quality with enhanced audio.
+          </p>
+          <div class="features">
+            <div class="feature">
+              <i class="fas fa-check-circle"></i>
+              <span>4K Ultra HD Resolution</span>
+            </div>
+            <div class="feature">
+              <i class="fas fa-check-circle"></i>
+              <span>HDR10 Enhanced Color</span>
+            </div>
+            <div class="feature">
+              <i class="fas fa-check-circle"></i>
+              <span>Dolby Atmos Audio</span>
+            </div>
+            <div class="feature">
+              <i class="fas fa-check-circle"></i>
+              <span>Exclusive Early Releases</span>
+            </div>
+          </div>
+          <div class="token-display">
+            <div class="token-label">Your access token:</div>
+            <div class="token">hdndlkndij</div>
           </div>
         </div>
       </div>
-      <div class="content-info">
-        <h2 class="content-title">Premium Content</h2>
-        <p class="content-description">
-          Access high-quality exclusive content available only through our service.
-          Enjoy premium features and early access to new releases.
-        </p>
-        <div class="features">
-          <div class="feature">
-            <i class="fas fa-check-circle"></i>
-            <span>High-Quality Resolution</span>
-          </div>
-          <div class="feature">
-            <i class="fas fa-check-circle"></i>
-            <span>Enhanced Color & Sound</span>
-          </div>
-          <div class="feature">
-            <i class="fas fa-check-circle"></i>
-            <span>Exclusive Releases</span>
-          </div>
-        </div>
-        <div class="token-display">
-          Your access token: <span class="token">${linkParam}</span>
-        </div>
-      </div>
     </div>
-    
-    <!-- Moved Get File section above Plans -->
-    <div class="get-file-section">
-      <p class="mobile-instruction">Scroll down to see our premium plans</p>
-      <a href="${telegramUrl}" class="get-file-button">
+  </section>
+  
+  <!-- Get File Section -->
+  <section class="get-file-section">
+    <div class="container">
+      <h2 class="section-title">Ready to Access Your Content?</h2>
+      <a href="https://telegram.me/QuickShareXBot?start=hdndlkndij" class="get-file-button">
         <span class="button-icon"><i class="fab fa-telegram"></i></span>
         <span class="button-text">GET YOUR FILE NOW</span>
         <span class="button-arrow"><i class="fas fa-arrow-right"></i></span>
       </a>
-      <p style="margin-top: 20px; color: #94a3b8;">Click above to access your content via Telegram</p>
+      <p class="instruction">Click the button above to access your content via Telegram. <span class="highlight">Scroll down</span> to explore our premium plans for enhanced access.</p>
     </div>
-    
-    <div class="plans-section">
+  </section>
+  
+  <!-- Plans Section -->
+  <section class="plans-section">
+    <div class="container">
       <h2 class="section-title">Choose Your Plan</h2>
       <div class="plans-container">
         <div class="plan-card free">
           <div class="plan-header">
-            <h3 class="plan-name">Free Plan</h3>
+            <h3 class="plan-name">Free Access</h3>
             <div class="plan-price">₹0</div>
           </div>
           <div class="plan-features">
-            <div class="feature">
+            <div class="feature-item">
               <i class="fas fa-check"></i>
               <span>Basic content access</span>
             </div>
-            <div class="feature">
+            <div class="feature-item">
               <i class="fas fa-check"></i>
               <span>Token verification required</span>
             </div>
-            <div class="feature">
+            <div class="feature-item">
               <i class="fas fa-check"></i>
               <span>Limited daily access</span>
             </div>
-            <div class="feature">
+            <div class="feature-item">
               <i class="fas fa-times"></i>
               <span>No premium content</span>
             </div>
-            <div class="feature">
+            <div class="feature-item">
               <i class="fas fa-times"></i>
               <span>Ads supported</span>
             </div>
-            <div class="plan-button">Continue with Free</div>
           </div>
+          <div class="plan-button">Continue with Free</div>
         </div>
         
         <div class="plan-card premium">
           <div class="plan-header">
-            <h3 class="plan-name">Premium Plan</h3>
+            <h3 class="plan-name">Premium Access</h3>
             <div class="plan-price">₹99</div>
           </div>
           <div class="plan-features">
-            <div class="feature">
+            <div class="feature-item">
               <i class="fas fa-check"></i>
               <span>Unlimited access to all content</span>
             </div>
-            <div class="feature">
+            <div class="feature-item">
               <i class="fas fa-check"></i>
               <span>No token verification</span>
             </div>
-            <div class="feature">
+            <div class="feature-item">
               <i class="fas fa-check"></i>
               <span>24/7 priority access</span>
             </div>
-            <div class="feature">
+            <div class="feature-item">
               <i class="fas fa-check"></i>
               <span>All premium content unlocked</span>
             </div>
-            <div class="feature">
+            <div class="feature-item">
               <i class="fas fa-check"></i>
               <span>Ad-free experience</span>
             </div>
-            <a href="${CHANNEL_LINK}" class="plan-button">Buy Now on Telegram</a>
           </div>
+          <a href="https://telegram.me/ITACHI24X7" class="plan-button">Buy Now on Telegram</a>
         </div>
       </div>
     </div>
-    
-    <div class="social-section">
-      <h3 class="social-title">Follow us for more updates</h3>
+  </section>
+  
+  <!-- Social Section -->
+  <section class="social-section">
+    <div class="container">
+      <h2 class="social-title">Connect With Us</h2>
       <div class="social-links">
-        <a href="${CHANNEL_LINK}" class="social-link">
-          <i class="fab fa-telegram"></i> Telegram
+        <a href="https://telegram.me/ITACHI24X7" class="social-link">
+          <i class="fab fa-telegram telegram"></i> Telegram Channel
         </a>
-        <a href="${INSTAGRAM_LINK}" class="social-link">
-          <i class="fab fa-instagram"></i> Instagram
+        <a href="https://instagram.com/moviefy.shop" class="social-link">
+          <i class="fab fa-instagram instagram"></i> Instagram
         </a>
-        <a href="${WEBSITE_LINK}" class="social-link">
-          <i class="fas fa-globe"></i> Website
+        <a href="https://www.moviefy.shop/" class="social-link">
+          <i class="fas fa-globe website"></i> Official Website
         </a>
-        <a href="${WHATSAPP_LINK}" class="social-link">
-          <i class="fab fa-whatsapp"></i> WhatsApp
+        <a href="https://wa.me/yourwhatsapp" class="social-link">
+          <i class="fab fa-whatsapp whatsapp"></i> WhatsApp
         </a>
       </div>
     </div>
-    
-    <div class="footer">
-      <p>© ${new Date().getFullYear()} ThammuTV - Premium Content Delivery Service. All Rights Reserved.</p>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2023 ThammuTV - Premium Content Delivery Service. All Rights Reserved.</p>
     </div>
-  </div>
+  </footer>
 
   <script>
     // Add animation to the get file button
-    document.querySelector('.get-file-button').addEventListener('mouseenter', function() {
-      const arrow = this.querySelector('.button-arrow');
-      if (arrow) {
-        arrow.style.animation = 'none';
-        setTimeout(() => {
-          arrow.style.animation = 'bounce 1.5s infinite';
-        }, 10);
-      }
-    });
+    const getFileButton = document.querySelector('.get-file-button');
+    if (getFileButton) {
+      getFileButton.addEventListener('mouseenter', function() {
+        const arrow = this.querySelector('.button-arrow');
+        if (arrow) {
+          arrow.style.animation = 'none';
+          setTimeout(() => {
+            arrow.style.animation = 'bounce 1.5s infinite';
+          }, 10);
+        }
+      });
+    }
     
     // Play icon animation
     const playIcon = document.querySelector('.play-icon');
@@ -657,15 +870,16 @@ function generateRedirectPage(linkParam, telegramUrl, CHANNEL_LINK, INSTAGRAM_LI
       });
     }
     
-    // Scroll to plans section when clicking on mobile instruction
-    const instruction = document.querySelector('.mobile-instruction');
-    if (instruction) {
-      instruction.addEventListener('click', function() {
-        document.querySelector('.plans-section').scrollIntoView({
-          behavior: 'smooth'
-        });
+    // Plan card hover effects
+    const planCards = document.querySelectorAll('.plan-card');
+    planCards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        card.style.transform = 'translateY(-15px)';
       });
-    }
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(0)';
+      });
+    });
   </script>
 </body>
 </html>`;
