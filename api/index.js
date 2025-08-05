@@ -691,49 +691,6 @@ function generateRedirectPage(linkParam, telegramUrl, CHANNEL_LINK, INSTAGRAM_LI
     </div>
   </section>
   
-  <!-- Content Section -->
-  <section class="content-section">
-    <div class="container">
-      <div class="content-wrapper">
-        <div class="content-preview">
-          <div class="preview-overlay">
-            <div class="play-icon">
-              <i class="fas fa-play"></i>
-            </div>
-          </div>
-        </div>
-        <div class="content-info">
-          <h2 class="content-title">Premium Content Access</h2>
-          <p class="content-description">
-            Experience our premium content with the highest quality streaming. Our platform offers exclusive access to the latest releases in stunning quality with enhanced audio.
-          </p>
-          <div class="features">
-            <div class="feature">
-              <i class="fas fa-check-circle"></i>
-              <span>4K Ultra HD Resolution</span>
-            </div>
-            <div class="feature">
-              <i class="fas fa-check-circle"></i>
-              <span>HDR10 Enhanced Color</span>
-            </div>
-            <div class="feature">
-              <i class="fas fa-check-circle"></i>
-              <span>Dolby Atmos Audio</span>
-            </div>
-            <div class="feature">
-              <i class="fas fa-check-circle"></i>
-              <span>Exclusive Early Releases</span>
-            </div>
-          </div>
-          <div class="token-display">
-            <div class="token-label">Your access token:</div>
-            <div class="token">hdndlkndij</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  
   <!-- Get File Section -->
   <section class="get-file-section">
     <div class="container">
