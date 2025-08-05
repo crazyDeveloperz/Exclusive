@@ -466,41 +466,7 @@ function generateRedirectPage(linkParam, telegramUrl, CHANNEL_LINK, INSTAGRAM_LI
         <i class="fas fa-film"></i>
       </div>
       <h1>PREMIUM ACCESS</h1>
-      <p>Unlock premium content with ThammuTV</p>
-    </div>
-    
-    <div class="exclusive-content">
-      <div class="content-preview">
-        <div class="preview-overlay">
-          <div class="play-icon">
-            <i class="fas fa-play"></i>
-          </div>
-        </div>
-      </div>
-      <div class="content-info">
-        <h2 class="content-title">Premium Content</h2>
-        <p class="content-description">
-          Access high-quality exclusive content available only through ThammuTV.
-          Enjoy premium features and early access to new releases.
-        </p>
-        <div class="features">
-          <div class="feature">
-            <i class="fas fa-check-circle"></i>
-            <span>High-Quality Resolution</span>
-          </div>
-          <div class="feature">
-            <i class="fas fa-check-circle"></i>
-            <span>Enhanced Color & Sound</span>
-          </div>
-          <div class="feature">
-            <i class="fas fa-check-circle"></i>
-            <span>Exclusive Releases</span>
-          </div>
-        </div>
-        <div class="token-display">
-          Your access token: <span class="token">${linkParam}</span>
-        </div>
-      </div>
+      <p>Unlock premium content with us</p>
     </div>
     
     <div class="plans-section">
